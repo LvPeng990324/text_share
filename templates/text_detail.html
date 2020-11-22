@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本详情</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- 标题块 -->
+    <div class="text-center">
+        <h1>{{ text.title }}</h1>
+    </div>
+
+    <hr>
+
+    <!-- 按钮块 -->
+    <div class="text-center">
+        <form action="{% url 'delete_text' %}" method="post">
+            {% csrf_token %}
+            <label for="text_id"></label>
+            <input id="text_id" name="text_id" value="{{ text.id }}" hidden>
+            <button type="submit" class="btn btn-danger">!-删除-!</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <!-- 内容块 -->
+    <div class="text-center">
+        <textarea class="form-control" rows="25">{{ text.text }}</textarea>
+    </div>
+</div>
+</body>
+</html>

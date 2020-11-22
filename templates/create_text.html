@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建文本</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- 标题块 -->
+    <div class="text-center">
+        <h1>创建一个共享文本</h1>
+    </div>
+
+    <hr>
+
+    <!-- 内容块 -->
+    <div>
+        <form action="{% url 'create_text' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="text_title">标题</label>
+                <input id="text_title" name="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="text_text">文本内容</label>
+                <textarea id="text_text" name="text" rows="25" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">～创建～</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

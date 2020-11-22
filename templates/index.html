@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- 标题块 -->
+    <div class="text-center">
+        <h1>文本共享</h1>
+    </div>
+
+    <hr>
+
+    <!-- 功能按钮块 -->
+    <div class="text-center">
+        <a href="{% url 'create_text' %}"><button class="btn btn-primary">+添加+</button></a>
+    </div>
+
+    <hr>
+
+    <!-- 内容块 -->
+    <div>
+        {% for text in texts %}
+        <div>
+            <a href="{% url 'text_detail' text.id %}"><h3>{{ text.title }}</h3></a>
+            <p class="small">创建时间：{{ text.create_time }}</p>
+            <p class="text-muted">{{ text.text | slice:":100" }}...</p>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
