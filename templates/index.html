@@ -25,7 +25,14 @@
     <div>
         {% for text in texts %}
         <div>
-            <a href="{% url 'text_detail' text.id %}"><h3>{{ text.title }}</h3></a>
+            <a href="{% url 'text_detail' text.id %}">
+                <h3>
+                    {% if text.to_top %}
+                    <span class="badge badge-pill badge-primary">置顶</span>
+                    {% endif %}
+                    {{ text.title }}
+                </h3>
+            </a>
             <p class="small">创建时间：{{ text.create_time }}</p>
             <p class="text-muted">{{ text.text | slice:":100" }}...</p>
         </div>

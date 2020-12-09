@@ -15,13 +15,31 @@
     <hr>
 
     <!-- 按钮块 -->
-    <div class="text-center">
+    <div class="form-inline">
         <form action="{% url 'delete_text' %}" method="post">
             {% csrf_token %}
             <label for="text_id"></label>
             <input id="text_id" name="text_id" value="{{ text.id }}" hidden>
-            <button type="submit" class="btn btn-danger">!-删除-!</button>
+            <button type="submit" class="btn btn-danger">X-删除-X</button>
         </form>
+        <!-- 根据是否置顶显示置顶与取消置顶按钮 -->
+        {% if text.to_top %}
+        <form action="{% url 'no_top_text' %}" method="post">
+            {% csrf_token %}
+            <label for="text_id"></label>
+            <input id="text_id" name="text_id" value="{{ text.id }}" hidden>
+            <button type="submit" class="btn btn-secondary">↓-取消置顶-↓</button>
+        </form>
+        {% else %}
+        <form action="{% url 'top_text' %}" method="post">
+            {% csrf_token %}
+            <label for="text_id"></label>
+            <input id="text_id" name="text_id" value="{{ text.id }}" hidden>
+            <button type="submit" class="btn btn-primary">↑-置顶-↑</button>
+        </form>
+        {% endif %}
+
+
     </div>
 
     <hr>
@@ -29,6 +47,15 @@
     <!-- 内容块 -->
     <div class="text-center">
         <textarea class="form-control" rows="25">{{ text.text }}</textarea>
+    </div>
+
+    <hr>
+
+    <!-- 页脚块 -->
+    <div class="text-center">
+        <a href="{% url 'index' %}">
+            <button class="btn btn-success">返回</button>
+        </a>
     </div>
 </div>
 </body>
