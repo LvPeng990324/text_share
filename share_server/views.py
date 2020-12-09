@@ -9,10 +9,8 @@ def index(request):
     :return:
     """
     # 取出所有文本信息
-    # 从新到旧排序
-    texts = Text.objects.all().filter(is_deleted=False).order_by('-create_time')
-    # 将置顶条目提到前边
-    texts = texts.order_by('-to_top')
+    # 从新到旧排序，将置顶条目提到前边
+    texts = Text.objects.all().filter(is_deleted=False).order_by("-to_top", "-create_time")
     # 打包到前端
     context = {
         'texts': texts,
